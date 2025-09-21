@@ -1,0 +1,1060 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jharkhand Bakery - Delicious Food, Anytime, Anywhere</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* CSS Variables */
+        :root {
+            --primary: #ff6b35;
+            --secondary: #f7931e;
+            --accent: #ffba08;
+            --dark: #2d2d2d;
+            --light: #ffffff;
+            --gray: #f5f5f5;
+            --font-main: 'Poppins', sans-serif;
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            --shadow-hover: 0 15px 40px rgba(0, 0, 0, 0.2);
+            --transition: all 0.3s ease;
+        }
+
+        /* Reset & Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-main);
+            line-height: 1.6;
+            color: var(--dark);
+            overflow-x: hidden;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--dark);
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(to right, var(--primary), var(--accent));
+            border-radius: 2px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            border-radius: 50px;
+            font-weight: 600;
+            text-align: center;
+            transition: var(--transition);
+            cursor: pointer;
+            border: none;
+            outline: none;
+            font-size: 1rem;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: var(--light);
+            box-shadow: 0 4px 15px rgba(255, 107, 53, 0.3);
+        }
+
+        .btn-primary:hover {
+            background: var(--secondary);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(247, 147, 30, 0.4);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--light);
+            border: 2px solid var(--light);
+        }
+
+        .btn-secondary:hover {
+            background: var(--light);
+            color: var(--primary);
+            transform: translateY(-3px);
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            transition: var(--transition);
+        }
+
+        header.scrolled {
+            background: var(--light);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+        }
+
+        .logo span {
+            color: var(--secondary);
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-link {
+            font-weight: 500;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: var(--transition);
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .hamburger {
+            display: none;
+            cursor: pointer;
+        }
+
+        .bar {
+            display: block;
+            width: 25px;
+            height: 3px;
+            margin: 5px auto;
+            background-color: var(--dark);
+            transition: var(--transition);
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            background: linear-gradient(135deg, rgba(255, 107, 53, 0.8), rgba(247, 147, 30, 0.8)), 
+                        url('https://placeholder-image-service.onrender.com/image/1920x1080?prompt=A%20beautiful%20spread%20of%20delicious%20gourmet%20food%20on%20a%20wooden%20table%20with%20warm%20lighting&id=hero-bg') center/cover no-repeat;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, rgba(255, 107, 53, 0.3), rgba(255, 186, 8, 0.3), rgba(247, 147, 30, 0.3));
+            animation: gradientShift 8s ease infinite;
+            z-index: 1;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            color: var(--light);
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 20px;
+            animation: fadeUp 1s ease-out;
+        }
+
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .hero-subtitle {
+            font-size: 1.25rem;
+            margin-bottom: 40px;
+            opacity: 0.9;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-hero {
+            min-width: 180px;
+            padding: 15px 30px;
+            font-size: 1.1rem;
+        }
+
+        /* Floating Food Icons */
+        .floating-icon {
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            opacity: 0.7;
+            z-index: 1;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .floating-icon:nth-child(1) {
+            top: 20%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .floating-icon:nth-child(2) {
+            top: 60%;
+            left: 15%;
+            animation-delay: 2s;
+        }
+
+        .floating-icon:nth-child(3) {
+            top: 30%;
+            right: 10%;
+            animation-delay: 4s;
+        }
+
+        .floating-icon:nth-child(4) {
+            top: 70%;
+            right: 15%;
+            animation-delay: 6s;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(10deg); }
+            100% { transform: translateY(0) rotate(0deg); }
+        }
+
+        /* Features Section */
+        .features {
+            background: var(--gray);
+            position: relative;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .feature-card {
+            background: var(--light);
+            padding: 40px 30px;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, transparent, rgba(255, 107, 53, 0.1), transparent);
+            transform: translateX(-100%);
+            transition: transform 0.6s ease;
+            z-index: -1;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px) rotate(2deg);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .feature-card:hover::before {
+            transform: translateX(100%);
+        }
+
+        .feature-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 25px;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: var(--light);
+            box-shadow: 0 10px 20px rgba(255, 107, 53, 0.3);
+        }
+
+        .feature-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: var(--dark);
+        }
+
+        .feature-desc {
+            color: #666;
+            font-size: 0.95rem;
+        }
+
+        /* App Section */
+        .app-section {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: var(--light);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .app-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .app-content {
+            animation: fadeInLeft 1s ease-out;
+        }
+
+        @keyframes fadeInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .app-title {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        .app-desc {
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+
+        .app-badges {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .app-badge {
+            display: inline-block;
+            padding: 12px 25px;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            border-radius: 12px;
+            transition: var(--transition);
+            animation: pulse 2s infinite;
+        }
+
+        .app-badge:hover {
+            background: rgba(255, 255, 255, 0.25);
+            transform: scale(1.05);
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        .app-mockup {
+            position: relative;
+            animation: floatPhone 4s ease-in-out infinite;
+        }
+
+        @keyframes floatPhone {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0); }
+        }
+
+        .phone-frame {
+            width: 300px;
+            height: 600px;
+            background: #222;
+            border-radius: 40px;
+            margin: 0 auto;
+            position: relative;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+            border: 4px solid #444;
+        }
+
+        .phone-screen {
+            width: 100%;
+            height: 100%;
+            background: url('https://placeholder-image-service.onrender.com/image/300x600?prompt=Restaurant%20mobile%20app%20interface%20showing%20food%20menu%20with%20appetizing%20images&id=app-screen') center/cover no-repeat;
+            border-radius: 36px;
+        }
+
+        /* Testimonials */
+        .testimonials {
+            background: var(--light);
+        }
+
+        .testimonial-slider {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+            overflow: hidden;
+        }
+
+        .testimonial-track {
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+
+        .testimonial-slide {
+            min-width: 100%;
+            padding: 30px;
+            background: var(--gray);
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: var(--shadow);
+        }
+
+        .testimonial-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            overflow: hidden;
+            border: 4px solid var(--light);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 20px;
+            color: #555;
+        }
+
+        .testimonial-author {
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        .testimonial-rating {
+            color: var(--accent);
+            margin-top: 10px;
+        }
+
+        .slider-nav {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 30px;
+        }
+
+        .slider-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #ddd;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .slider-dot.active {
+            background: var(--primary);
+            transform: scale(1.2);
+        }
+
+        /* Footer */
+        footer {
+            background: linear-gradient(to right, #2d2d2d, #1a1a1a);
+            color: var(--light);
+            padding: 60px 0 30px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-col h3 {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-col h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 2px;
+            background: var(--primary);
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            opacity: 0.8;
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            opacity: 1;
+            color: var(--primary);
+            padding-left: 5px;
+        }
+
+        .footer-contact li {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+        }
+
+        .social-icon:hover {
+            background: var(--primary);
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.9rem;
+            opacity: 0.7;
+        }
+
+        /* Animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .hero-title {
+                font-size: 2.8rem;
+            }
+            
+            .app-container {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            
+            .app-mockup {
+                order: -1;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hamburger {
+                display: block;
+                z-index: 101;
+            }
+            
+            .hamburger.active .bar:nth-child(2) {
+                opacity: 0;
+            }
+            
+            .hamburger.active .bar:nth-child(1) {
+                transform: translateY(8px) rotate(45deg);
+            }
+            
+            .hamburger.active .bar:nth-child(3) {
+                transform: translateY(-8px) rotate(-45deg);
+            }
+            
+            .nav-menu {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 70%;
+                height: 100vh;
+                background: var(--light);
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                transition: var(--transition);
+                box-shadow: -5px 0 25px rgba(0, 0, 0, 0.1);
+                z-index: 100;
+            }
+            
+            .nav-menu.active {
+                right: 0;
+            }
+            
+            .hero-title {
+                font-size: 2.2rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1.1rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .btn-hero {
+                width: 100%;
+                max-width: 250px;
+            }
+            
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .floating-icon {
+                display: none;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-title {
+                font-size: 1.8rem;
+            }
+            
+            .feature-card {
+                padding: 30px 20px;
+            }
+            
+            .phone-frame {
+                width: 250px;
+                height: 500px;
+            }
+            
+            .app-badges {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header id="header">
+        <div class="container nav-container">
+            <a href="#" class="logo">Jharkhand<span>Bakery</span></a>
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="#hero" class="nav-link">Home</a></li>
+                    <li><a href="#features" class="nav-link"></a></li>
+                    <li><a href="#app" class="nav-link">App</a></li>
+                    <li><a href="#testimonials" class="nav-link">Reviews</a></li>
+                    <li><a href="#contact" class="nav-link">Contact</a></li>
+                </ul>
+                <div class="hamburger">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="hero" class="hero">
+        <!-- Floating food icons -->
+        <div class="floating-icon">
+            <img src="./images/slice-cake-vector-cartoon-cake-illustration-cartoon-sticker_546335_wh1200 (1).png" alt="Hamburger icon floating in the background" width="24" height="24">
+        </div>
+        <div class="floating-icon">
+            <img src="./images/alpha.png" alt="Pizza slice icon floating in the background" width="24" height="24">
+        </div>
+        <div class="floating-icon">
+            <img src="https://placeholder-image-service.onrender.com/image/32x32?prompt=A%20taco%20icon&id=float-3" alt="Taco icon floating in the background" width="24" height="24">
+        </div>
+        <div class="floating-icon">
+            <img src="https://placeholder-image-service.onrender.com/image/32x32?prompt=An%20ice%20cream%20icon&id=float-4" alt="Ice cream icon floating in the background" width="24" height="24">
+        </div>
+        
+        <div class="hero-content">
+            <h1 class="hero-title">Delicious Food, Anytime, Anywhere!</h1>
+            <p class="hero-subtitle">Experience the finest cuisine delivered straight to your door or enjoy in our cozy restaurant</p>
+            <div class="hero-buttons">
+                <a href="https://jharkhandbakery.netlify.app/" class="btn btn-primary btn-hero">Explore Menu</a>
+                <a href="#app" class="btn btn-secondary btn-hero">Download App</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="section features">
+        <div class="container">
+            <h2 class="section-title">Why Choose Us</h2>
+            <div class="features-grid">
+                <div class="feature-card fade-in">
+                    <div class="feature-icon">
+                        <img src="./images/Food-Delivery-Scooter-PNG-Isolated-Picture (1).png" alt="Delivery truck icon representing fast delivery service" width="40" height="40">
+                    </div>
+                    <h3 class="feature-title">Fast Delivery</h3>
+                    <p class="feature-desc">Get your favorite meals delivered in under 30 minutes with our efficient delivery system.</p>
+                </div>
+                
+                <div class="feature-card fade-in">
+                    <div class="feature-icon">
+                        <img src="./images/images (1).png" alt="Fresh vegetables icon representing quality ingredients" width="40" height="40">
+                    </div>
+                    <h3 class="feature-title">Fresh Ingredients</h3>
+                    <p class="feature-desc">We use only the freshest, locally sourced ingredients for all our dishes.</p>
+                </div>
+                
+                <div class="feature-card fade-in">
+                    <div class="feature-icon">
+                        <img src="https://placeholder-image-service.onrender.com/image/40x40?prompt=Credit%20card%20payment%20icon&id=feature-3" alt="Credit card icon representing easy payment options" width="40" height="40">
+                    </div>
+                    <h3 class="feature-title">Easy Payment</h3>
+                    <p class="feature-desc">Multiple secure payment options including credit cards, digital wallets and cash.</p>
+                </div>
+                
+                <div class="feature-card fade-in">
+                    <div class="feature-icon">
+                        <img src="https://placeholdempt=24%2F7%20service%20clock%20icon&id=feature-4" alt="24/7 clock icon representing always available service" width="40" height="40">
+                    </div>
+                    <h3 class="feature-title">24/7 Service</h3>
+                    <p class="feature-desc">Craving something delicious? We're here for you anytime, day or night.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- App Section -->
+    <section id="app" class="section app-section">
+        <div class="container app-container">
+            <div class="app-content">
+                <h2 class="section-title app-title">Download Our App</h2>
+                <p class="app-desc">Order food, track delivery in real-time, and get exclusive deals with our mobile app. Available for iOS and Android devices.</p>
+                <div class="app-badges">
+                    <a href="./code index.html" class="app-badge">
+                        <img src="./images/001.png" a0lt="Get it on Google Play store badge" width="120" height="40">
+                    </a>
+                    <a href="./code index.html" class="app-badge">
+                        <img src="https://placeholder-image-service.onrender.com/image/120x40?prompt=Apple%20App%20Store%20badge&id=app-store" alt="Download on the App Store badge" width="120" height="40">
+                    </a>
+                </div>
+            </div>
+            <div class="app-mockup">
+                <div class="phone-frame">
+                    <div class="phone-screen"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="section testimonials">
+        <div class="container">
+            <h2 class="section-title">What Our Customers Say</h2>
+            <div class="testimonial-slider">
+                <div class="testimonial-track">
+                    <div class="testimonial-slide">
+                        <div class="testimonial-avatar">
+                            <img src="https://placeholder-image-service.onrender.com/image/80x80?prompt=Portrait%20of%20a%20happy%20female%20customer&id=testimonial-1" alt="Portrait of Sarah Johnson, satisfied customer" width="80" height="80">
+                        </div>
+                        <p class="testimonial-text">"The food is always fresh and delicious. Their delivery service is lightning fast! I order from Jharkhand Bakery at least twice a week."</p>
+                        <h4 class="testimonial-author">Dev</h4>
+                        <div class="testimonial-rating">★★★★★</div>
+                    </div>
+                    
+                    <div class="testimonial-slide">
+                        <div class="testimonial-avatar">
+                            <img src="https://placeholder-image-service.onrender.com/image/80x80?prompt=Portrait%20of%20a%20happy%20male%20customer&id=testimonial-2" alt="Portrait of Michael Chen, satisfied customer" width="80" height="80">
+                        </div>
+                        <p class="testimonial-text">"I love how easy it is to order through their app. The interface is user-friendly and my food always arrives hot and fresh."</p>
+                        <h4 class="testimonial-author">Chandni Singh</h4>
+                        <div class="testimonial-rating">★★★★★</div>
+                    </div>
+                    
+                    <div class="testimonial-slide">
+                        <div class="testimonial-avatar">
+                            <img src="https://placeholder-image-service.onrender.com/image/80x80?prompt=Portrait%20of%20a%20happy%20female%20customer&id=testimonial-3" alt="Portrait of Emily Rodriguez, satisfied customer" width="80" height="80">
+                        </div>
+                        <p class="testimonial-text">"The quality of ingredients is exceptional. You can taste the difference compared to other restaurants. Highly recommended!"</p>
+                        <h4 class="testimonial-author">Sumit Verma</h4>
+                        <div class="testimonial-rating">★★★★☆</div>
+0                    </div>
+                </div>
+                <div class="slider-nav">
+                    <div class="slider-dot active"></div>
+                    <div class="slider-dot"></div>
+                    <div class="slider-dot"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3>Jharkhand Bakery</h3>
+                    <p>Delivering delicious meals with love and care since 2015. Your satisfaction is our priority.</p>
+                    <div class="social-icons">
+                        <a href="#" class="social-icon">
+                            <img src="https://placeholder-image-service.onrender.com/image/20x20?prompt=Facebook%20icon&id=fb-icon" alt="Facebook social media icon" width="20" height="20">
+                        </a>
+                        <a href="#" class="social-icon">
+                            <img src="https://placeholder-image-service.onrender.com/image/20x20?prompt=Instagram%20icon&id=ig-icon" alt="Instagram social media icon" width="20" height="20">
+                        </a>
+                        <a href="#" class="social-icon">
+                            <img src="https://placeholder-image-service.onrender.com/image/20x20?prompt=Twitter%20icon&id=tw-icon" alt="Twitter social media icon" width="20" height="20">
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Menu</a></li>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#"></a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>Contact Us</h3>
+                    <ul class="footer-contact">
+                        <li>
+                            <img src="https://placeholder-image-service.onrender.com/image/20x20?prompt=Location%20pin%20icon&id=location-icon" alt="Location pin icon" width="20" height="20">
+                            At- Nawadih 2, Beside Lakhan sweet center ,Markacho , Koderma Jharkhand,825318
+                        </li>
+                        <li>
+                            <img src="https://placeholder-image-service.onrender.com/image/20x20?prompt=Phone%20icon&id=phone-icon" alt="Phone icon" width="20" height="20">
+                            +91 1234567890                        </li>
+                        <li>
+                            <img src="https://placeholder-image-service.onrender.com/image/20x20?prompt=Email%20icon&id=email-icon" alt="Email icon" width="20" height="20">
+                            nothing@gmail.com
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>Opening Hours</h3>
+                    <ul class="footer-contact">
+                        <li>Monday - Friday: 10am - 10pm</li>
+                        <li>Saturday: 11am - 11pm</li>
+                        <li>Sunday: 11am - 9pm</li>
+                        <li>Holidays: 12pm - 8pm</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 Jharkhand Bakery. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Mobile Menu Toggle
+            const hamburger = document.querySelector('.hamburger');
+            const navMenu = document.querySelector('.nav-menu');
+            
+            hamburger.addEventListener('click', function() {
+                hamburger.classList.toggle('active');
+                navMenu.classList.toggle('active');
+            });
+            
+            // Close mobile menu when clicking on a link
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.addEventListener('click', () => {
+                    hamburger.classList.remove('active');
+                    navMenu.classList.remove('active');
+                });
+            });
+            
+            // Header scroll effect
+            const header = document.getElementById('header');
+            
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 50) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+            });
+            
+            // Testimonial slider
+            const track = document.querySelector('.testimonial-track');
+            const slides = document.querySelectorAll('.testimonial-slide');
+            const dots = document.querySelectorAll('.slider-dot');
+            let currentIndex = 0;
+            
+            function goToSlide(index) {
+                track.style.transform = `translateX(-${index * 100}%)`;
+                dots.forEach(dot => dot.classList.remove('active'));
+                dots[index].classList.add('active');
+                currentIndex = index;
+            }
+            
+            dots.forEach((dot, index) => {
+                dot.addEventListener('click', () => {
+                    goToSlide(index);
+                });
+            });
+            // Auto slide every 5 seconds
+            setInterval(() => {
+                let nextIndex = (currentIndex + 1) % slides.length;
+                goToSlide(nextIndex);
+            }, 5000);
+            // Fade-in animations on scroll
+            const faders = document.querySelectorAll('.fade-in');
+            const appearOptions = {
+                threshold: 0.1,
+                rootMargin: "0px 0px -50px 0px"
+            };
+            const appearOnScroll = new IntersectionObserver(function(entries, appearOnScroll) {
+                entries.forEach(entry => {
+                    if (!entry.isIntersecting) {
+                        return;
+                    } else {
+                        entry.target.classList.add('visible');
+                        appearOnScroll.unobserve(entry.target);
+                    }
+                });
+            }, appearOptions);
+            faders.forEach(fader => {
+                appearOnScroll.observe(fader);
+            });
+        });
+
+    </script>
+</body>
+</html>
+
+
